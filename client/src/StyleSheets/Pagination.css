@@ -1,0 +1,23 @@
+.pagination-container {
+    display:flex;
+    justify-content: center;
+}
+
+.pagination-button {
+    margin: 5px;
+    width: 40px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: rgb(102, 213, 213);
+    border:4px solid aliceblue;
+    color: rgb(88, 88, 88);
+    transition: background-color 0.25s linear , border 0.25s linear , box-shadow 0.25s linear, width 0.25s linear, height 0.25s linear;
+}
+
+.pagination-button:hover {
+    width: 44px;
+    height: 33px;
+    background-color: rgb(35, 193, 193);
+    border: 4px solid rgb(35, 193, 193);
+    box-shadow: 0 0 3px 1px rgb(35, 193, 193);
+}

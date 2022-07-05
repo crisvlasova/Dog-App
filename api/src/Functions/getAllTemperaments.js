@@ -1,26 +1,31 @@
-const { getAllDogs } = require('./getAllDogs.js')
-const { Temperament } = require('../models/Temperament.js')
+const { Temperament } = require('../db');
+const { default: axios } = require('axios');
 
 async function getAllTemperaments () {
-    const set = new Set;
-    const getDogs = await getAllDogs();
+    const getDogs = await axios.get('https://api.thedogapi.com/v1/breeds/')
+    const allDogs = await getDogs.data
+    const array = []
+    const set = new Set
 
-    /* Mapeo a través de la variedad de perros y agregando el temperamento al conjunto. */
-    getDogs.map(dog => {
+    allDogs.map(dog => {
         if(dog.temperament) {
-        const splited = dog.temperament.split(', ');
-        splited.map(t => set.add(t));
-    }});
+            array.push(dog.temperament)
+        }
+    });
 
-    
-    /* Crear un nuevo temperamento para cada elemento del conjunto. */
+    const separate = array.join(', ').split(', ')
+
+    separate.map(temp => {
+        set.add(temp)
+    })
+
     set.forEach(temp => {
-            const newTemp = await Temperament.create({
-                name: temp
+        Temperament.findOrCreate({
+            where: {name: temp}
         })
     })
+    return [...set]
 }
-
 module.exports = {
     getAllTemperaments
 }

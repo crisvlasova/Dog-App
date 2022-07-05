@@ -1,0 +1,42 @@
+.landing-page-container {
+    display: flex;
+    margin: 80px;
+    align-items: center;
+    margin-top: 7%;
+}
+
+.Dogs-landing {
+    margin-right: 30px;
+    font-size: 80px;
+}
+
+.doguilogo-clickme {
+    margin: 30px 15px 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.doguilogo {
+    margin-right: 15px;
+    width: 80px;
+    transition: width 0.25s ease-out
+}
+
+.doguilogo:hover {
+    width: 100px
+
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+.doguilogo:active {
+    animation: fadeOut 1s ease;
+}

@@ -1,0 +1,9 @@
+.all-dogs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.all-dogs-container .loading {
+    width: 500px;
+}
