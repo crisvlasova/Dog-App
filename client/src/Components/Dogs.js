@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllDogsBack, setIndexOfFirstDog, setIndexOfLastDog } from '../Redux/Actions/Actions.js';
-import Dog from './Dog.js'
+import {Dog} from './Dog.js'
 import Pagination from './Pagination.js';
 import gif from '../Images/giphy.gif'
 import '../StyleSheets/Dogs.css'
@@ -28,6 +28,7 @@ export function Dogs ({allDogs, currentPage, indexOfFirstDog, indexOfLastDog, ge
                       name={dog.name}
                       img={dog.image}
                       temperament={dog.temperament}
+                      Temperaments={dog.Temperaments}
                       weight={dog.weight}
                       id={dog.id}
                     />

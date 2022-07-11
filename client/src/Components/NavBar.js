@@ -6,6 +6,7 @@ import '../StyleSheets/NavBar.css'
 import OrderBy from './OrderBy';
 import FilterByTemp from './FilterByTemp';
 import FilterByRace from './FilterByRace';
+import FilterByApiDb from './FilterByApiDb';
 
 export default function NavBar () {
     return (
@@ -22,6 +23,7 @@ export default function NavBar () {
                 <OrderBy/>
                 <FilterByTemp/>
                 <FilterByRace/>
+                <FilterByApiDb/>
             </div>
             <Link to='/home'>
                 <button className='home-dogs-buttons'>Ver perros</button>

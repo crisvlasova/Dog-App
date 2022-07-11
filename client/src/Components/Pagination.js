@@ -9,7 +9,7 @@ export function Pagination ({ postPerPage, indexOfLastDog, indexOfFirstDog,  set
         setIndexOfLastDog(currentPage);
         setIndexOfFirstDog(indexOfLastDog);
     },[currentPage, indexOfFirstDog, indexOfLastDog]) //eslint-disable-line react-hooks/exhaustive-deps
-
+    
     let indexes = []
     let dogsLength = allDogs.length
     let numberOfPaginations = Math.ceil(dogsLength/postPerPage)

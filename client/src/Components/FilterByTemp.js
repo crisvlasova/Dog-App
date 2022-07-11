@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { getDogsByTemp, getAllTemperamentsBack } from '../Redux/Actions/Actions';
 
-export function FilterByTemp ({getDogsByTemp, getAllTemperamentsBack, temperaments}) {
+export function FilterByTemp ({ getDogsByTemp, getAllTemperamentsBack, temperaments}) {
+    let loc = useLocation().pathname
+
     useEffect(() => {
         getAllTemperamentsBack();
     },[]) //eslint-disable-line react-hooks/exhaustive-deps
@@ -12,12 +15,12 @@ export function FilterByTemp ({getDogsByTemp, getAllTemperamentsBack, temperamen
         if(e.target.value === 'temperaments') {
             return;
         } else {
-        getDogsByTemp(e.target.value)
+        getDogsByTemp(e.target.value);
         }
     }
 
     return (
-        <select className='filter' onChange={(e) => handleChange(e)}>
+        <select className='filter' onChange={(e) => handleChange(e)} disabled={loc === '/home'? false: true}>
             <option key='temperaments' value ='temperaments'>Temperamentos</option>
             {temperaments.map(temp => { return (
                 <option key={temp} value ={temp}>{temp}</option>
@@ -35,7 +38,7 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch) => {
     return {
         getDogsByTemp: (e) => dispatch(getDogsByTemp(e)),
-        getAllTemperamentsBack: () => dispatch(getAllTemperamentsBack())
+        getAllTemperamentsBack: () => dispatch(getAllTemperamentsBack()),
     }
 }
 

@@ -3,6 +3,7 @@ const { Dog, Temperament } = require('../db');
 const { getAllDogs } = require('../Functions/getAllDogs.js');
 const { getAllTemperaments } = require('../Functions/getAllTemperaments');
 const express = require('express');
+const { json } = require('body-parser');
 const router = Router();
 
 
@@ -65,7 +66,17 @@ router.post('/dogs', async (req,res) => {
     }
 })
 
-
+router.delete('/dogs', async(req,res) => {
+    const {id} = req.body;
+    if(!id) {
+        return res.status(404).send('no se ha mandado el id')
+    } else {
+        let allDogs = await Dog.destroy({
+            where:{id: id}
+        })
+        res.status(200).send('tu perro ha sido borrado exitosamente')
+    }
+})
 
 router.get('/temperaments', async (req,res) => {
         const temps = await getAllTemperaments()

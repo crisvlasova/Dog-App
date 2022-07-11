@@ -12,6 +12,8 @@ export const GET_DOGS_LENGTH = 'GET_DOGS_LENGTH';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_INDEX_OF_LAST_DOG = 'SET_INDEX_OF_LAST_DOG';
 export const SET_INDEX_OF_FIRST_DOG = 'SET_INDEX_OF_FIRST_DOG';
+export const GET_DOGS_FROM_API_DB = 'GET_DOGS_FROM_API_DB'
+export const GET_DB_DOGS = 'GET_DB_DOGS';
 export const CLEAR_DETAILS = 'CLEAR_DETAILS';
 
 export const getAllDogsBack = () => (dispatch) => {
@@ -95,7 +97,6 @@ export const getDogsByTemp = (e) => (dispatch) => {
     .then(data => {
         let filteredDogs = data.filter(dog => dog.temperament);
         let filteredDogs2 = data.filter(dog => dog.Temperaments);
-        console.log(filteredDogs.concat(filteredDogs2))
         return filteredDogs.concat(filteredDogs2)
     })
     .then(filteredDogs => {
@@ -155,6 +156,32 @@ export const setIndexOfFirstDog = (indexOfLastPost) => {
     return {type: SET_INDEX_OF_FIRST_DOG, payload: indexOfLastPost - 8}
 }
 
+export const getDogsApiDb = (targetValue) => (dispatch) => {
+    return axios.get('http://localhost:3001/dogs')
+    .then(response => response.data)
+    .then(data => {
+        if(targetValue === 'Todos los perros' || targetValue === 'Filtrar por Api/Db') return data;
+        else if(targetValue === 'Api') {
+            let filteredDogs = data.filter(dog => Number(dog.id));
+            return filteredDogs
+        }
+        else if (targetValue === 'Db') {
+            let filteredDogs = data.filter(dog => !Number(dog.id));
+            return filteredDogs
+        }
+    })
+    .then(filtered => dispatch({type: GET_DOGS_FROM_API_DB, payload: filtered}))
+}
+
+export const getDbDogs = () => (dispatch) => {
+    return axios.get('http://localhost:3001/dogs')
+    .then(response => response.data)
+    .then(data => {
+        let filteredDogs = data.filter(dog => !Number(dog.id))
+        return filteredDogs
+    })
+    .then(filtered => dispatch({type: GET_DB_DOGS, payload: filtered}))
+}
 
 export const clearDetails = () => {
     return {type: CLEAR_DETAILS}
