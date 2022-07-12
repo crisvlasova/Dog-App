@@ -7,3 +7,11 @@ and back-end as we can see.
 The next step is deploying and adding some fun functionalities! Hope you like my page.
 
 <img src='./client/src/Images/landing-page.png'/>
+<img src='./client/src/Images/home-dogs.png'/>
+<img src='./client/src/Images/home-dogs2.png'/>
+<img src='./client/src/Images/home-dogs3.png'/>
+<img src='./client/src/Images/live-search.png'/>
+<img src='./client/src/Images/form.png'/>
+<img src='./client/src/Images/dog-details.png'/>
+
+
